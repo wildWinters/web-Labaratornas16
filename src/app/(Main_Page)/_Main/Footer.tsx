@@ -3,6 +3,8 @@ import { damion } from "./Header";
 import { Nunito } from "next/font/google";
 import Link from "next/link";
 import Image from "next/image";
+import Buttons3D from "../_UI/button";
+import Button from "../_UI/button";
 
 export const nunito400 = Nunito({
     subsets: ["latin"],
@@ -94,7 +96,7 @@ export default function Footer() {
                 </div>
             </div>
 
-            <div className="w-full h-[40px] flex items-center justify-center border-b-2 border-transparent transition-all duration-300 hover:border-white">&copy; Your site - Copyright 2025</div>
+            <div className="w-full h-[40px] flex items-center justify-center border-b-2 border-transparent transition-all duration-300 hover:border-white">&copy; Your site - Copyright 2025  </div>
         </footer>
     );
 }

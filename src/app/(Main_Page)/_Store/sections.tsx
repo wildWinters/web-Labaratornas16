@@ -16,4 +16,14 @@ const useSwitchSections = create<Sections>((set, get) => ({
 export default useSwitchSections;
 
 
+interface Form {
+    isForm:boolean;
+    activateForm:()=>void;
+    disabledForm:()=> void;
+}
+export  const useForm =create<Form>((set,get) => ({
+    isForm:false,
+    activateForm:()=>set(({isForm:true})),
+    disabledForm:()=>set({isForm:false})    
+}))
 

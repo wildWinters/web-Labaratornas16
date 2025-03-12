@@ -2,6 +2,8 @@ import { Sigmar } from "next/font/google"
 import { Nunito } from "next/font/google";
 import { Lilita_One } from "next/font/google";
 import { Damion } from "next/font/google";
+import { useForm } from "../_Store/sections";
+import Link from "next/link";
 
 export const damion = Damion({
     subsets:["latin"],
@@ -23,9 +25,12 @@ const lilita =  Lilita_One({
 })
 
 
-export default function Header() {
-    let headerinfo = ["Home", "About", "Service", "Blog"];
-  
+
+export default function Header({}) {
+    const headerinfo = ["Home", "Market", "Investors"];
+    const path = ["url1","url2","url3","url4"];
+
+    const activateForms = useForm(state=>state.activateForm);
     return (
       <>
         <header className="sticky top-0 z-50 w-full justify-between items-center h-[74px] bg-white flex">
@@ -46,8 +51,8 @@ export default function Header() {
 
 
 
-            <button className = {`${nunito.className} relative w-[120px] h-[48px] shrink-0 flex text-white items-center justify-center bg-[#324381] text-[16px] rounded-[20px] group`}>
-                    Contact us
+            <button onClick={activateForms} className = {`${nunito.className} relative w-[160px] h-[48px] shrink-0 flex text-white items-center justify-center bg-[#324381] text-[16px] rounded-[20px] group`}>
+                    Create Startup 
                 <span className = "w-0 h-[2px]  block absolute bottom-[10px] transition-all duration-300 group-hover:w-[70%] bg-[white] shadow-2xl"></span>
             </button>
 
