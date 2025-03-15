@@ -6,6 +6,7 @@ import Section from "./(Main_Page)/_Main/Sections";
 import Main from "./(Main_Page)/_Main/Main";
 import StartupForm from "./(Main_Page)/_UI/Form";
 import { useForm } from "./(Main_Page)/_Store/sections";
+import InvestorsBlog from "./investors/_Components/InvetorsBlog";
 export default function Home() {
 
   const isForm = useForm(state=>state.isForm);
@@ -16,9 +17,11 @@ export default function Home() {
         <Slider />
         <Section />
       </Main>
+      <InvestorsBlog/>
       <Footer />
       {isForm && <StartupForm/>}   
     </>
   );
 }
+
 

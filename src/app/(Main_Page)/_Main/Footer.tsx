@@ -3,18 +3,15 @@ import { damion } from "./Header";
 import { Nunito } from "next/font/google";
 import Link from "next/link";
 import Image from "next/image";
-import Buttons3D from "../_UI/button";
-import Button from "../_UI/button";
+import { FaInstagram, FaTelegram, FaYoutube, FaFacebook } from "react-icons/fa";
 
 export const nunito400 = Nunito({
     subsets: ["latin"],
     weight: "400"
 });
 
-
 export default function Footer() {
-    const footerDescription =
-    [
+    const footerDescription = [
         "Roundazzle",
         "Our mission is your vision and your mission is to tell us your vision, so that what you envision will become our mission.",
         "We are a placeholder text and yes we are aware of that. We have generated self-awareness ever since the beginning of time and space."
@@ -24,79 +21,59 @@ export default function Footer() {
 
     const FooterAdminContacts = [
         "Get in touch",
-        {
-            img: "/email (1).png",
-            adminInfo: "nonexistentadd@gmail.com"
-        },
-        {
-            img: "/phone-call (1).png",
-            adminInfo: "+639123456789"
-        },
-        {
-            img: "/maps-and-flags.png",
-            adminInfo: "20th street.Dremland"
-        }
+        { img: "/email (1).png", adminInfo: "nonexistentadd@gmail.com" },
+        { img: "/phone-call (1).png", adminInfo: "+639123456789" },
+        { img: "/maps-and-flags.png", adminInfo: "20th street.Dremland" }
     ];
 
     const socialNetworks = [
-        { img: "/instagram (8).png", link: "https://instagram.com" },
-        { img: "/telegram (2).png", link: "https://t.me" },
-        { img: "/youtube (2).png", link: "https://youtube.com" },
-        { img: "/facebook (1).png", link: "https://facebook.com" }
+        { icon: <FaInstagram />, link: "https://instagram.com" },
+        { icon: <FaTelegram />, link: "https://t.me" },
+        { icon: <FaYoutube />, link: "https://youtube.com" },
+        { icon: <FaFacebook />, link: "https://facebook.com" }
     ];
 
+    //  bg-[#1e1e24]
     return (
-        <footer className="flex justify-start w-full flex-col h-[450px] bg-[#272a31]">
-            <div className="flex justify-between w-[80%] m-auto">
-                <div className="flex justify-evenly w-[320px] text-justify h-[330px] flex-col">
+        <footer className="flex flex-col w-full bg-black text-white py-12">
+            <div className="flex flex-col md:flex-row justify-between w-[85%] mx-auto gap-10">
+                <div className="flex flex-col w-[350px] text-justify space-y-4">
                     {footerDescription.map((value, index) => (
                         <Fragment key={index}>
-                            {index === 0 && <h1 className={`${damion.className} text-[40px] border-b-2 border-transparent transition-all duration-300 hover:border-white`}>{value}</h1>}
-                            {index > 0 && <p className={`${nunito400.className} border-b-2 border-transparent transition-all duration-300 hover:border-white`}>{value}</p>}
+                            {index === 0 && <h1 className={`${damion.className} text-[42px] font-bold border-b-2 pb-2`}>{value}</h1>}
+                            {index > 0 && <p className={`${nunito400.className} text-gray-400`}>{value}</p>}
                         </Fragment>
                     ))}
                 </div>
 
-                <div className="flex flex-col h-[300px]">
-                    {FooterAdminContacts.map((value, index) => (
-                        <Fragment key={index}>
-                            {index === 0 && value === "Get in touch" && (
-                                <h1 className={`${damion.className} mx-3 text-[40px] border-b-2 border-transparent transition-all duration-300 hover:border-white`}>{value}</h1>
-                            )}
-                            {index > 0 && typeof value === "object" && typeof value.img === "string" && (
-                                <Link passHref href="#" className="relative group flex items-center gap-2 my-3 transition-all duration-300 border-b-2 border-transparent hover:border-white">
-                                    <Image className="mx-3 flex rounded-[5px]" src={value.img} alt="img" width={30} height={20} />
-                                    {value.adminInfo}
-                                </Link>
-                            )}
-                        </Fragment>
+                <div className="flex flex-col space-y-3">
+                    <h1 className={`${damion.className} text-[30px] font-bold border-b-2 pb-2`}>Get in touch</h1>
+                    {FooterAdminContacts.slice(1).map((value, index) => (
+                        <Link key={index} href="#" className="flex items-center gap-3 text-gray-300 hover:text-white transition-all">
+                            <Image className="rounded-md" src={value.img} alt="icon" width={25} height={25} />
+                            {value.adminInfo}
+                        </Link>
                     ))}
-
-                    <div className="flex justify-around">
+                    <div className="flex space-x-3 mt-4">
                         {socialNetworks.map((item, index) => (
-                            <Link key={index} href={item.link} target="_blank" className="flex items-center justify-center w-[60px] h-[60px] transition-all duration-300 border-b-2 border-transparent hover:border-white">
-                                <Image src={item.img} alt="social-networks" width={30} height={30} />
+                            <Link key={index} href={item.link} target="_blank" className="w-10 h-10 flex items-center justify-center rounded-full bg-gray-700 hover:bg-gray-500 transition-all">
+                                {item.icon}
                             </Link>
                         ))}
                     </div>
                 </div>
 
-                <div className="flex flex-col h-[270px] w-[200px]"> 
-                    {FooterLinkList.map((value, index) => (
-                        <Fragment key={index}> 
-                            {index === 0 && <h1 className={`${damion.className} text-[40px] border-b-2 border-transparent transition-all duration-300 hover:border-white`}>{value}</h1>}
-                            {index > 0 && (
-                                <Link className="flex justify-start items-center border-b-2 border-transparent transition-all duration-300 hover:border-white" href="#">
-                                    <Image className="mr-3 my-2" src="/next.png" alt="strong mentality" width={15} height={15} /> 
-                                    {value}
-                                </Link>
-                            )}
-                        </Fragment>
+                <div className="flex flex-col w-[220px] space-y-3"> 
+                    <h1 className={`${damion.className} text-[30px] font-bold border-b-2 pb-2`}>Useful Links</h1>
+                    {FooterLinkList.slice(1).map((value, index) => (
+                        <Link key={index} className="flex items-center text-gray-300 hover:text-white transition-all" href="#">
+                            <Image className="mr-2" src="/next.png" alt="icon" width={15} height={15} /> 
+                            {value}
+                        </Link>
                     ))}
                 </div>
             </div>
-
-            <div className="w-full h-[40px] flex items-center justify-center border-b-2 border-transparent transition-all duration-300 hover:border-white">&copy; Your site - Copyright 2025  </div>
+            <div className="w-full text-center text-gray-500 mt-8 border-t border-gray-700 pt-4">&copy; Your site - Copyright 2025</div>
         </footer>
     );
 }
