@@ -1,13 +1,14 @@
 "use client"
-import Header from "../(Main_Page)/_Main/Header"
-import Section from "./_Components/section"
-import Footer from "../(Main_Page)/_Main/Footer"
+import Header from "../Main/Header"
+import Section from "./Components/section"
+import Footer from "../Main/Footer"
+import Button from "./UI/Button"
 
 export default function Investors(){
 
     return (
         <>
-            <Header/>
+            <Header/>          
             <Section/>
             <Footer/>
             

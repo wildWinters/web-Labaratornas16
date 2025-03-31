@@ -1,15 +1,20 @@
 "use client"
-import Header from "./(Main_Page)/_Main/Header";
-import Slider from "./(Main_Page)/_Main/Slider";
-import Footer from "./(Main_Page)/_Main/Footer";
-import Section from "./(Main_Page)/_Main/Sections";
-import Main from "./(Main_Page)/_Main/Main";
-import StartupForm from "./(Main_Page)/_UI/Form";
-import { useForm } from "./(Main_Page)/_Store/sections";
-import InvestorsBlog from "./investors/_Components/InvetorsBlog";
-export default function Home() {
+import Header from "./Main/Header";
+import Slider from "./Main/Slider";
+import Footer from "./Main/Footer";
+import Section from "./Main/Sections";
+import Main from "./Main/Main";
+import StartupForm from "./UI/Form";
+import { useForm } from "./Store/sections";
+import InvestorsBlog from "./investors/Components/InvetorsBlog";
+import AuthModal from "./Modals/AuthModal";
+import useAuth from "./Store/useRegistration";
 
-  const isForm = useForm(state=>state.isForm);
+export default function Home() {
+  
+  const isAuthModal = useAuth(state => state.isAuthModal);
+  const isForm = useForm(state => state.isForm);
+
   return (
     <>
       <Header />
@@ -17,9 +22,10 @@ export default function Home() {
         <Slider />
         <Section />
       </Main>
-      <InvestorsBlog/>
+      {/* <InvestorsBlog/> */}
       <Footer />
       {isForm && <StartupForm/>}   
+      {isAuthModal && <AuthModal /> }
     </>
   );
 }
